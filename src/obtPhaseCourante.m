@@ -4,7 +4,6 @@ function [ti, duree, theta1, theta2]=obtPhaseCourante(t)
     global tb;
     global Talph;
     global temps_simulation1;
-    global t2c;
     global temps_simulation2;
     global temps_simulation3;
     
@@ -14,8 +13,6 @@ function [ti, duree, theta1, theta2]=obtPhaseCourante(t)
     global theta2sc2;
     global theta11;
     global theta12;
-    global theta2c1;
-    global theta2c2;
     global thetab1;
     global thetab2;
     global thetav1;

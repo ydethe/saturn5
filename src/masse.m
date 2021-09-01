@@ -6,6 +6,6 @@ function m=masse()
         etage=env.fusee.etages(i);
         m=m+etage.Me+etage.Ms;
     end
-    m=m+env.fusee.coiffe_masse + cu;
+    m=m + cu;
     
 end

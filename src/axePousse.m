@@ -6,12 +6,10 @@ function axe=axePousse(t, pos, vel)
     global env;
     global thetab2;
     global tv;
-    global tb;
     global Talph;
     global temps_simulation1;
-    global t2c;
-    global temps_simulation2;
     global temps_simulation3;
+    global tb;
     
     if (t<=tv)
         %'Cas 1'
@@ -40,7 +38,7 @@ function axe=axePousse(t, pos, vel)
         %'Cas 5'
         % Combustion de l'étage 2 et 3
         axe=RD0_to_REQ(RL0_to_RD0(RL_to_RL0([1, 0, 0], commande(t))))';
-        return
+        return;
     else
         axe=[1.; 0.; 0.];
     end

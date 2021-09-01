@@ -8,6 +8,10 @@ function [z, i]=trouveZero(x, y)
         i=find(y>=0,1,'first')-1;
     end
     
+    if i==1
+        i=i+1;
+    end
+    
     if numel(i) == 0
         z=0;
         i=-1;

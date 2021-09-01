@@ -98,13 +98,7 @@ vz3=vz(1:3:end);
 alt3=alt(1:3:end);
 inci3=inci(1:3:end);
 
-save('vx.txt','vx3','-ASCII');
-save('vy.txt','vy3','-ASCII');
-save('vz.txt','vz3','-ASCII');
-save('alt.txt','alt3','-ASCII');
-save('inci.txt','inci3','-ASCII');
-
-pertesdV=pertes(T, Y)
+pertesdV=pertes(T, Y);
 
 [a e inc Omega omega v] = inertiel_vers_orbparam(Y(end,:));
 za=a*(1+e)/1000-6378
@@ -112,31 +106,6 @@ zp=a*(1-e)/1000-6378
 
 Vf=norm(Y(end,4:6))
 
-% Période de l'orbite finale atteinte
-Trevol = 2*pi*sqrt(abs(a)^3/env.Mu);
-% Etat final atteint
-Yi=Y(end,:);
-ti = T(end);
-[Ts,Ys] = ode45(@acceleration, [ti, ti+Trevol*1.1], Yi);
-Tlat=[];
-Tlong=[];
-Ns=numel(Ts);
-for i=1:Ns
-    poss=Ys(i,1:3);
-    [lo la h]=latlong(poss,Ts(i));
-    Tlat=[Tlat la*180/pi];
-    Tlong=[Tlong lo*180/pi];
-end
-
-% figure();
-% TraceSol(Tlat, Tlong);
-% 
-% figure();
-% traceEllipse(a*(1-e^2), e, 0, 'r');
-% hold on;
-% traceEllipse(env.Re, 0, 0, 'b');
-% axis equal;
-% xlim([-36000000-6378000 6378000+250000]);
-% ylim([-2e7 2e7]);
-% 
-
+figure();
+plot(T,inci);
+grid on;
