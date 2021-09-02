@@ -19,9 +19,9 @@ theta32inf=60;%*pi/180;
 
 % Bornes sup des variables
 thetab2sup=20;%*pi/180;
-theta2sc1sup=130;%*pi/180;
-theta2sc2sup=130;%*pi/180;
-theta31sup=130;%*pi/180;
+theta2sc1sup=120;%*pi/180;
+theta2sc2sup=120;%*pi/180;
+theta31sup=120;%*pi/180;
 theta32sup=130;%*pi/180;
 
 % Definition du vecteur borne inf Xb
@@ -35,9 +35,10 @@ global zavise;
 zavise=6378137+185.9e3;
 zpvise=6378137+183.2e3;
 
-X = [7.115477140334336  81.223894601090947  91.524575689824687  91.904021766326863];
+X = [0.079170759672270   0.760135318934298   0.913805672718938   1.001412197906766]*100;
 % X = fmincon(@criterePerigee, X,[],[],[],[],Xb,Xa, @supernonlcon);
-X = fmincon(@critereConso, X,[],[],[],[],Xb,Xa, @supernonlcon2);
+% X = fmincon(@critereConso, X,[],[],[],[],Xb,Xa, @supernonlcon2);
 
 simulateur(X);
 post_traitement;
+

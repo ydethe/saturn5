@@ -124,12 +124,13 @@ env.CJ = 8.777596*10^24;
 env.eps=10^(-4);
 env.OmegaT = 7.292155*10^(-5);
 env.atm_info=importATMdata('Atmosphere_us76.txt');
+% env.atm_info=importATMdata('atm_saturn5.txt');
 
 % Paramètres du pas de tir
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-pdt.latitude=pi/180*5.24;
-pdt.longitude=pi/180*(-52.76);
-pdt.altitude=0;
+pdt.latitude=pi/180*28.60838889;
+pdt.longitude=pi/180*(-80.64333333);
+pdt.altitude=59;
 env.pdt=pdt;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -152,8 +153,15 @@ pitch_rate=0.728*pi/180;
 global tv;
 tv=30;
 
-global Az;
-Az=pi/2;
+global Az0;
+global dAz;
+global tAz;
+% Az0 = 72.058*pi/180;
+% dAz = -0.1368*pi/180;
+% tAz = 90;
+Az0 = 72.058*pi/180;
+dAz = 0*pi/180;
+tAz = 10000;
 
 posi=latlong_to_inertiel(env.pdt.longitude, env.pdt.latitude, env.pdt.altitude);
 veli=cross([0.; 0.; env.OmegaT], posi);

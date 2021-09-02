@@ -1,6 +1,6 @@
 function res=vson(pos, t)
     global env;
-     [lambda0, phi0, h] = latlong(pos, t);
+     [~, ~, h] = latlong(pos, t);
      if h > 2.3e5
          res=0.1;
      elseif h<-2.5e3

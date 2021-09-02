@@ -60,12 +60,12 @@ for i=1:N
     gam = [gam 180/pi*gammaAbs(Y(i,:),t)];
     pit = [pit 180/pi*pitch(Y(i,:),t)];
     
-    % Vitesse de l'atmosphère dans le repere inertiel
+%     % Vitesse de l'atmosphère dans le repere inertiel
     axe=axePousse(t, pos, vel);
-    verticale=RD0_to_REQ(RL0_to_RD0([1, 0, 0]))';
-    x=dot(verticale, axe);
-    y=norm(cross(verticale,axe));
-    theta=[theta 180/pi*atan2(y, x)];
+%     verticale=RD0_to_REQ(RL0_to_RD0([1, 0, 0], az))';
+%     x=dot(verticale, axe);
+%     y=norm(cross(verticale,axe));
+%     theta=[theta 180/pi*atan2(y, x)];
     
     inci(i)=180/pi*incidence(axe, pos, vel, t);
     inciAbs(i)=180/pi*incidenceAbs(Y(i,:), t);
@@ -92,20 +92,12 @@ for i=1:N
 end
 pdyn=0.5.*rr.*va.*va;
 
-vx3=vx(1:3:end);
-vy3=vy(1:3:end);
-vz3=vz(1:3:end);
-alt3=alt(1:3:end);
-inci3=inci(1:3:end);
-
-pertesdV=pertes(T, Y);
-
+% pertesdV=pertes(T, Y);
 [a e inc Omega omega v] = inertiel_vers_orbparam(Y(end,:));
 za=a*(1+e)/1000-6378
 zp=a*(1-e)/1000-6378
-
-Vf=norm(Y(end,4:6))
+% Vf=norm(Y(end,4:6))
 
 figure();
-plot(T,inci);
+plot(T,pit);
 grid on;

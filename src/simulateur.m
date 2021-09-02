@@ -3,7 +3,7 @@
 % accel max < 5g
 % Flux thermique < 1135 W/m^2
 
-function [za, zp, a, e, mf, pdynmax, fluxmax]=simulateur(X)
+function [za, zp, a, e, mf, pdynmax, fluxmax, incmax]=simulateur(X)
     global thetab2;
     global theta2sc1;
     global theta2sc2;
@@ -82,11 +82,12 @@ function [za, zp, a, e, mf, pdynmax, fluxmax]=simulateur(X)
             mf=Y(end,7);
             pdynmax=80000;
             fluxmax = 0;
+            incmax = 0;
             disp('Incidence non convergee');
             return
         end
         
-        [0 tv tb+tv Talph temps_simulation1 temps_simulation2 temps_simulation3]
+%         [0 tv tb+tv Talph temps_simulation1 temps_simulation2 temps_simulation3]
         
         % Calcul du poids à donner à Ya(Ialph+1) pour interpoler l'état et
         % trouver l'état atteint à l'instant où l'incidence devient nulle
@@ -150,10 +151,19 @@ function [za, zp, a, e, mf, pdynmax, fluxmax]=simulateur(X)
         N = numel(T);
         pdynmax=0;
         fluxmax=0;
+        incmax=0;
+        courbe_inci = zeros(N);
         for i=1:N
             t = T(i);
             pos = Y(i,1:3);
             vel = Y(i,4:6);
+            
+            inc = incidenceAbs(Y(i,:), t)*180/pi;
+            [~, ~, h] = latlong(pos, t);
+            courbe_inci(i) = h;
+            if t>temps_simulation2
+                incmax = incmax + inc^2/N;
+            end
             
             % Vitesse de l'atmosphère dans le repere inertiel
             rr = rho(pos, t);
@@ -171,15 +181,20 @@ function [za, zp, a, e, mf, pdynmax, fluxmax]=simulateur(X)
         end
         
         mf=Y(end,7);
+% 
+%         clf;
+%         plot(T,courbe_inci);
+%         grid on;
+%         drawnow;
 
-        clf;
-        traceEllipse(a*(1-e^2), e, 0, 'r');
-        hold on;
-        traceEllipse(env.Re, 0, 0, 'b');
-        axis equal;
-        xlim([-6878137 6878137]);
-        ylim([-6878137 6878137]);
-        drawnow;
+%         clf;
+%         traceEllipse(a*(1-e^2), e, 0, 'r');
+%         hold on;
+%         traceEllipse(env.Re, 0, 0, 'b');
+%         axis equal;
+%         xlim([-6878137 6878137]);
+%         ylim([-6878137 6878137]);
+%         drawnow;
         
     catch exception
         if strcmp(exception.identifier, 'Lanceur:crash')
