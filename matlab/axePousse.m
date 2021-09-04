@@ -56,4 +56,3 @@ function axe=axePousse(t, pos, vel)
         axe=[1.; 0.; 0.];
     end
 end
- 

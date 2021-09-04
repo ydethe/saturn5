@@ -1,0 +1,6 @@
+wheel==0.36.1
+pytest==6.2.2
+pytest-mpl==0.12
+pytest-cov==2.11.1
+codecov==2.1.11
+docutils==0.16
