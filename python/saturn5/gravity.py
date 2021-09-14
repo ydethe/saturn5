@@ -11,7 +11,7 @@ def ECEF_acceleration(pv: np.array) -> np.array:
     Args:
       pv
         Array with x, y, z, vx, vy, vz (m and m/s) in ECEF frame
-    
+
     Returns:
       Gravity vector in the same frame
 

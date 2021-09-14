@@ -99,5 +99,5 @@ zp=a*(1-e)/1000-6378
 % Vf=norm(Y(end,4:6))
 
 figure();
-plot(T,pit);
+plot(T,alt);
 grid on;
