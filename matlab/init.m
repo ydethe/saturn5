@@ -58,7 +58,7 @@ etage1.ISV=[0 is11 is12 is13];
 % lanceur.
 etage1.q=[0 q11 q12 q13];
 etage1.dateDebut = 0;
-etage1.Tcu=[0 t1i t11, t12, t13];
+etage1.Tcu=[0, t1i, t11, t12, t13];
 % Ss Section de sortie de la tuyère
 etage1.Ss=s1;
 %Durée de fonctionnement de l'étage
@@ -123,7 +123,7 @@ env.J2 = 1.08263*10^(-3);
 env.CJ = 8.777596*10^24;
 env.eps=10^(-4);
 env.OmegaT = 7.292155*10^(-5);
-env.atm_info=importATMdata('Atmosphere_us76.txt');
+env.atm_info=importATMdata('..\\share\\Atmosphere_us76.txt');
 % env.atm_info=importATMdata('atm_saturn5.txt');
 
 % Paramètres du pas de tir

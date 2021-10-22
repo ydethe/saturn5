@@ -61,11 +61,14 @@ function [za, zp, a, e, mf, pdynmax, fluxmax, incmax]=simulateur(X)
         %%%%%%%%%%%%%%%%%%%%%%%
         [T, Y] = ode45(@acceleration,[0, tv], Y0, options);
         Yi=Y(end,:);
-        [Tb, Yb] = ode45(@acceleration,[tv, tv+tb], Yi, options);
-        T=[T; Tb];
-        Y=[Y; Yb];
-
-        Yi=Yb(end,:);
+        
+        if tb > 1e-6
+            [Tb, Yb] = ode45(@acceleration,[tv, tv+tb], Yi, options);
+            T=[T; Tb];
+            Y=[Y; Yb];
+            Yi=Yb(end,:);
+        end
+        
         [Ta,Ya] = ode45(@acceleration,[tv+tb, Talph], Yi, options);
         
         %%%%%%%%%%%%%%%%%%%%%%%%%
